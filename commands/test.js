@@ -5,6 +5,7 @@ const test = {
 	},
 	// return true si erreur gerée par la commande
 	error: (args, msg) => {
+		console.log(args, msg);
 		return false;
 	},
 };

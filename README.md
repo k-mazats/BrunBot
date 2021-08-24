@@ -1,7 +1,7 @@
-#BrunBot
+# BrunBot
 
-##Discord bot template 
-###WIP
+## Discord bot template 
+### WIP
 
 The goal is to provide a solid template to start any discord bot project
 

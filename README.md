@@ -6,7 +6,7 @@
 The goal is to provide a solid template to start any discord bot project
 
 As of now the bot create its own dedicated channels when it gets on a server.
-A command channel which is the only one the bot listen for and a feed channel for the bot to post from social feeds(not yet implemented).
+A command channel which is the only one the bot listen for and a feed channel for the bot to post from social feeds or web services(not yet implemented).
 
 It can also listen for commands and tell you if it's missing arguments. We planned a way for each command to be able to produce custom error message.
 

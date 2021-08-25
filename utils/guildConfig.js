@@ -1,0 +1,48 @@
+import fs from 'fs';
+import Keyv from 'keyv';
+import { KeyvFile } from 'keyv-file';
+import defaultConfig from '../configs/default.js';
+
+const guildConfig = {
+	initConfig: async (guildId) => {
+		if (!fs.existsSync(`./configs/${guildId}.json`)) {
+			const config = new Keyv({
+				store: new KeyvFile({
+					filename: `./configs/${guildId}.json`,
+					writeDelay: 100,
+					encode: JSON.stringify,
+					decode: JSON.parse,
+				}),
+			});
+			config.set('config', defaultConfig);
+		}
+	},
+	editConfig: async (guildId, service, option, value) => {
+		const config = new Keyv({
+			store: new KeyvFile({
+				filename: `./configs/${guildId}.json`,
+				writeDelay: 100,
+				encode: JSON.stringify,
+				decode: JSON.parse,
+			}),
+		});
+		const localConfig = await config.get('config');
+		console.log(localConfig);
+		localConfig[service][option] = value;
+		config.set('config', localConfig);
+	},
+	getConfig: async (guildId, service) => {
+		const config = new Keyv({
+			store: new KeyvFile({
+				filename: `./configs/${guildId}.json`,
+				writeDelay: 100,
+				encode: JSON.stringify,
+				decode: JSON.parse,
+			}),
+		});
+		const localConfig = await config.get('config');
+		return localConfig[service];
+	},
+};
+
+export default guildConfig;

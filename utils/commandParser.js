@@ -9,15 +9,12 @@ const commandParser = async (msg) => {
 		msg.reply('Commande inconnue');
 	}
 	else if (commandArgs.length < commands[commandName].requiredArgs.length) {
-		commands[commandName].error() || defaultError(commandArgs, commands[commandName].requiredArgs, msg);
+		commands[commandName].error() ||
+			defaultError(commandArgs, commands[commandName].requiredArgs, msg);
 	}
-
-	// const validReply = await msg.reply('Je suis une commande');
-	// const fullCommandReply = await validReply.reply(fullCommand.toString());
-	// const commandNameReply = await fullCommandReply.reply(
-	// 	`La commande est "${commandName}"`
-	// );
-	// await commandNameReply.reply(`les arguments sont "${commandArgs}"`);
+	else {
+		commands[commandName].run(commandArgs, msg);
+	}
 };
 
 export default commandParser;

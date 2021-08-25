@@ -27,9 +27,14 @@ const guildConfig = {
 			}),
 		});
 		const localConfig = await config.get('config');
-		console.log(localConfig);
-		localConfig[service][option] = value;
-		config.set('config', localConfig);
+		const newConfig = { ...localConfig };
+		if (!localConfig[service]) {
+			newConfig[service] = {};
+			config.set('config', newConfig);
+		}
+
+		newConfig[service][option] = value;
+		config.set('config', newConfig);
 	},
 	getConfig: async (guildId, service) => {
 		const config = new Keyv({
